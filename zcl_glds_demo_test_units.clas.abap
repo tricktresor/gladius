@@ -1,22 +1,31 @@
-CLASS zcl_glds_demo_test_units DEFINITION
-  PUBLIC
-  INHERITING FROM zcl_glds_demo_test_helper
-  ABSTRACT
-  CREATE PUBLIC
-  FOR TESTING
-  DURATION SHORT
-  RISK LEVEL HARMLESS .
+class ZCL_GLDS_DEMO_TEST_UNITS definition
+  public
+  inheriting from ZCL_GLDS_DEMO_TEST_HELPER
+  abstract
+  create public
+  for testing
+  duration short
+  risk level harmless .
 
-  PUBLIC SECTION.
+public section.
 
-    METHODS constructor .
-    METHODS test_0      FOR TESTING .
-    METHODS test_1      FOR TESTING .
-    METHODS test_2      FOR TESTING .
-    METHODS test_3      FOR TESTING .
-    METHODS test_10     FOR TESTING .
-    METHODS test_99     FOR TESTING .
-    METHODS test_random FOR TESTING .
+  methods CONSTRUCTOR .
+  methods TEST_0
+  for testing .
+  methods TEST_1
+  for testing .
+  methods TEST_2
+  for testing .
+  methods TEST_3
+  for testing .
+  methods TEST_10
+  for testing .
+  methods TEST_99
+  for testing .
+  methods TEST_RANDOM
+  for testing .
+  methods TEST_DUMMY
+  for testing .
   PROTECTED SECTION.
   PRIVATE SECTION.
     DATA mo_class_to_test TYPE REF TO zif_glds_demo_test .
@@ -78,6 +87,17 @@ CLASS ZCL_GLDS_DEMO_TEST_UNITS IMPLEMENTATION.
       exp = 9702
       act = mo_class_to_test->test_me( 99 )
       msg = '99 should be 9702' ).
+  ENDMETHOD.
+
+
+  METHOD test_dummy.
+
+    cl_abap_unit_assert=>assert_equals(
+      exp = 1
+      act = 0
+      msg = |Don't worry - This test always fails to display all other results. |
+      level = if_aunit_constants=>tolerable ).
+
   ENDMETHOD.
 
 

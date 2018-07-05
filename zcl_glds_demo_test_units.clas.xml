@@ -30,6 +30,12 @@
      <LANGU>E</LANGU>
      <DESCRIPT>GLADIUS demo: Test Master Method</DESCRIPT>
     </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_GLDS_DEMO_TEST_UNITS</CLSNAME>
+     <CMPNAME>TEST_DUMMY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Dieser Test schlägt immer fehlt!</DESCRIPT>
+    </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
  </asx:abap>
