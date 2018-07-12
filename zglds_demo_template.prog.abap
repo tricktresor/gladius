@@ -18,10 +18,18 @@ CLASS lcl_solution IMPLEMENTATION.
   ENDMETHOD.
 ENDCLASS.
 
-*"* use this source file for your ABAP unit test classes
-CLASS lcl_test DEFINITION
-  INHERITING FROM zcl_glds_demo_test_units
-  FOR TESTING
-  RISK LEVEL HARMLESS
-  DURATION SHORT.
-ENDCLASS.
+"* use this source file for your ABAP unit test classes
+*UT:CLASS lcl_test DEFINITION
+*UT:  INHERITING FROM zcl_glds_demo_test_units
+*UT:  FOR TESTING
+*UT:  RISK LEVEL HARMLESS
+*UT:  DURATION SHORT.
+*UT:ENDCLASS.
+
+"* use this source file for your SECRET unit test classes
+*??:CLASS lcl_secret_test DEFINITION
+*??:  INHERITING FROM zcl_glds_demo_secret_tests
+*??:  FOR TESTING
+*??:  RISK LEVEL HARMLESS
+*??:  DURATION SHORT.
+*??:ENDCLASS.

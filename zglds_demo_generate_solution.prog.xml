@@ -31,73 +31,19 @@
       </RPY_DYCATT>
       <RPY_DYCATT>
        <TYPE>CUST_CTRL</TYPE>
-       <NAME>CUSTOM_CONTAINER3</NAME>
+       <NAME>CUSTOM_CONTAINER</NAME>
        <ELEMENT_OF>SCREEN</ELEMENT_OF>
        <LINE>001</LINE>
-       <COLUMN>127</COLUMN>
-       <LENGTH>098</LENGTH>
-       <HEIGHT>036</HEIGHT>
-       <C_RESIZE_V>X</C_RESIZE_V>
-       <C_RESIZE_H>X</C_RESIZE_H>
-       <C_LINE_MIN>018</C_LINE_MIN>
-       <C_COLN_MIN>050</C_COLN_MIN>
-      </RPY_DYCATT>
-      <RPY_DYCATT>
-       <TYPE>CUST_CTRL</TYPE>
-       <NAME>CUSTOM_CONTAINER1</NAME>
-       <ELEMENT_OF>SCREEN</ELEMENT_OF>
-       <LINE>003</LINE>
-       <COLUMN>002</COLUMN>
-       <LENGTH>120</LENGTH>
-       <HEIGHT>010</HEIGHT>
+       <COLUMN>001</COLUMN>
+       <LENGTH>250</LENGTH>
+       <HEIGHT>055</HEIGHT>
        <C_RESIZE_V>X</C_RESIZE_V>
        <C_RESIZE_H>X</C_RESIZE_H>
        <C_LINE_MIN>005</C_LINE_MIN>
        <C_COLN_MIN>020</C_COLN_MIN>
       </RPY_DYCATT>
-      <RPY_DYCATT>
-       <TYPE>CUST_CTRL</TYPE>
-       <NAME>CUSTOM_CONTAINER2</NAME>
-       <ELEMENT_OF>SCREEN</ELEMENT_OF>
-       <LINE>016</LINE>
-       <COLUMN>002</COLUMN>
-       <LENGTH>120</LENGTH>
-       <HEIGHT>020</HEIGHT>
-       <C_RESIZE_V>X</C_RESIZE_V>
-       <C_RESIZE_H>X</C_RESIZE_H>
-       <C_LINE_MIN>010</C_LINE_MIN>
-       <C_COLN_MIN>020</C_COLN_MIN>
-      </RPY_DYCATT>
      </CONTAINERS>
      <FIELDS>
-      <RPY_DYFATC>
-       <CONT_TYPE>SCREEN</CONT_TYPE>
-       <CONT_NAME>SCREEN</CONT_NAME>
-       <TYPE>FRAME</TYPE>
-       <NAME>%#AUTOTEXT001</NAME>
-       <TEXT>Deklarationen_____________________________________________________________________________________________________________</TEXT>
-       <LINE>001</LINE>
-       <COLUMN>001</COLUMN>
-       <LENGTH>123</LENGTH>
-       <VISLENGTH>123</VISLENGTH>
-       <HEIGHT>013</HEIGHT>
-       <FORMAT>CHAR</FORMAT>
-       <REQU_ENTRY>N</REQU_ENTRY>
-      </RPY_DYFATC>
-      <RPY_DYFATC>
-       <CONT_TYPE>SCREEN</CONT_TYPE>
-       <CONT_NAME>SCREEN</CONT_NAME>
-       <TYPE>FRAME</TYPE>
-       <NAME>%#AUTOTEXT002</NAME>
-       <TEXT>Implementierung___________________________________________________________________________________________________________</TEXT>
-       <LINE>014</LINE>
-       <COLUMN>001</COLUMN>
-       <LENGTH>123</LENGTH>
-       <VISLENGTH>123</VISLENGTH>
-       <HEIGHT>023</HEIGHT>
-       <FORMAT>CHAR</FORMAT>
-       <REQU_ENTRY>N</REQU_ENTRY>
-      </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
        <CONT_NAME>SCREEN</CONT_NAME>
@@ -198,8 +144,8 @@
       <TEXT_NAME>ICON_EXECUTE_OBJECT</TEXT_NAME>
       <ICON_ID>@15@</ICON_ID>
       <FUN_TEXT>Execute</FUN_TEXT>
-      <ICON_TEXT>Execute</ICON_TEXT>
-      <INFO_TEXT>Execute program</INFO_TEXT>
+      <ICON_TEXT>Check solution</ICON_TEXT>
+      <INFO_TEXT>Check solution</INFO_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>EXIT</CODE>
@@ -342,8 +288,8 @@
     </DOC>
     <TIT>
      <RSMPE_TITT>
-      <CODE>TITLE_100</CODE>
-      <TEXT>Create Generic Programs</TEXT>
+      <CODE>TITLE</CODE>
+      <TEXT>Code Arena</TEXT>
      </RSMPE_TITT>
     </TIT>
    </CUA>
@@ -392,7 +338,7 @@
     </item>
     <item>
      <ID>R</ID>
-     <ENTRY>Create Generic Programs</ENTRY>
+     <ENTRY>Code Arena</ENTRY>
      <LENGTH>70</LENGTH>
     </item>
     <item>
@@ -450,7 +396,7 @@
       </item>
       <item>
        <ID>R</ID>
-       <ENTRY>Generische Programmerstellung</ENTRY>
+       <ENTRY>Quelltext Arena</ENTRY>
        <LENGTH>29</LENGTH>
       </item>
       <item>

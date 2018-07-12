@@ -92,7 +92,8 @@ CLASS test_runner IMPLEMENTATION.
       ENDCASE.
     ENDLOOP.
 
-    task->run( if_aunit_task=>c_run_mode-catch_short_dump ).
+    task->run( if_aunit_task=>c_run_mode-external ).
+*    task->run( if_aunit_task=>c_run_mode-catch_short_dump ).
     e_aunit_result = listener->get_result_after_end_of_task( ).
 
   ENDMETHOD.
@@ -150,12 +151,14 @@ CLASS display DEFINITION FINAL.
     TYPES: txt_line TYPE c LENGTH 72,
            txt      TYPE STANDARD TABLE OF txt_line
                     WITH DEFAULT KEY.
-    CLASS-DATA:
-      read_only TYPE abap_bool READ-ONLY VALUE abap_true.
+    CLASS-DATA read_only TYPE abap_bool READ-ONLY VALUE abap_true.
+    CLASS-DATA main_splitter TYPE REF TO cl_gui_easy_splitter_container.
+    CLASS-DATA code_splitter TYPE REF TO cl_gui_easy_splitter_container.
 
     CLASS-METHODS:
       class_constructor,
       main IMPORTING i_template TYPE syrepid,
+
       fill_abap_editor   IMPORTING editor TYPE REF TO cl_gui_abapedit
                                    text   TYPE  txt,
       read_abap_editor   IMPORTING editor TYPE REF TO cl_gui_abapedit
@@ -166,7 +169,7 @@ CLASS display DEFINITION FINAL.
     CLASS-METHODS:
       prepare_editors,
       create_abap_editor
-        IMPORTING parent_container TYPE REF TO cl_gui_custom_container
+        IMPORTING parent_container TYPE REF TO cl_gui_container
         RETURNING VALUE(editor)    TYPE REF TO cl_gui_abapedit.
 
 ENDCLASS.
@@ -174,7 +177,9 @@ ENDCLASS.
 CLASS program DEFINITION FINAL.
   PUBLIC SECTION.
     CLASS-METHODS:
-      execute IMPORTING check_only TYPE abap_bool DEFAULT abap_false,
+      execute IMPORTING check_only   TYPE abap_bool DEFAULT abap_false
+                        unit_tests   TYPE abap_bool DEFAULT abap_false
+                        secret_tests TYPE abap_bool DEFAULT space,
       build_source          RETURNING VALUE(rc) TYPE sy-subrc,
       check_declarations    RETURNING VALUE(rc) TYPE sy-subrc,
       check_implementation  RETURNING VALUE(rc) TYPE sy-subrc,
@@ -193,7 +198,6 @@ DATA g_editor2        TYPE REF TO cl_gui_abapedit.
 
 DATA g_declarations   TYPE display=>txt.
 DATA g_implementation TYPE display=>txt.
-DATA container3       TYPE REF TO cl_gui_custom_container.
 
 PARAMETERS p_tmpl TYPE syrepid DEFAULT 'ZGLDS_DEMO_TEMPLATE'.
 
@@ -223,7 +227,19 @@ CLASS program IMPLEMENTATION.
     FIELD-SYMBOLS <source> TYPE STANDARD TABLE.
     ASSIGN (source_name) TO <source>.
 
-    program = |$ZGLDS_SOLUTION_{ sy-uname }|.
+    CASE abap_true.
+      WHEN unit_tests.
+        LOOP AT <source> ASSIGNING FIELD-SYMBOL(<line_ut>).
+          REPLACE '*UT:' WITH space INTO <line_ut>.
+        ENDLOOP.
+      WHEN secret_tests.
+        LOOP AT <source> ASSIGNING FIELD-SYMBOL(<line_st>).
+          REPLACE '*??:' WITH space INTO <line_st>.
+        ENDLOOP.
+    ENDCASE.
+
+
+    program = |$ZGLDS_SOLUTION_{ sy-uname }{ secret_tests }|.
 
     INSERT REPORT program FROM <source>.
     IF sy-subrc = 0.
@@ -239,11 +255,9 @@ CLASS program IMPLEMENTATION.
 
         DATA aunit_result         TYPE REF TO if_saunit_internal_result.
         DATA cvrg_rslt_provider   TYPE REF TO if_aucv_cvrg_rslt_provider.
-        DATA runner               TYPE REF TO cl_aucv_test_runner_abstract.
+*        DATA runner               TYPE REF TO cl_aucv_test_runner_abstract.
 
-        runner = test_runner=>create( passport=>get( ) ).
-
-        runner->run_for_program_keys(
+        test_runner=>create( passport=>get( ) )->run_for_program_keys(
           EXPORTING
             i_limit_on_risk_level        = if_aunit_attribute_enums=>c_risk_level-harmless
             i_limit_on_duration_category = if_aunit_attribute_enums=>c_duration-short
@@ -255,23 +269,54 @@ CLASS program IMPLEMENTATION.
         DELETE REPORT program.
         COMMIT WORK.
 
-        IF container3 IS BOUND.
-          container3->free( ).
-          CLEAR container3.
-        ENDIF.
-
-        CREATE OBJECT container3
-          EXPORTING
-            container_name = 'CUSTOM_CONTAINER3'.
-
-
         DATA task_data               TYPE if_saunit_internal_rt_v3=>ty_s_task.
         DATA task_result_casted TYPE REF TO cl_saunit_internal_result.
         task_result_casted ?= aunit_result.
-        CALL FUNCTION '_SAUNIT_CREATE_CTRL_VIEWER_V3'
-          EXPORTING
-            task_data = task_result_casted->f_task_data
-            container = container3.
+
+        DATA lt_secret_tests_failed TYPE string_table.
+
+        CASE 'X'.
+          WHEN unit_tests.
+            CALL FUNCTION '_SAUNIT_CREATE_CTRL_VIEWER_V3'
+              EXPORTING
+                task_data = task_result_casted->f_task_data
+                container = display=>main_splitter->bottom_right_container.
+          WHEN secret_tests.
+            DATA(fails) = lines( task_result_casted->f_task_data-alerts_by_indicies ).
+            LOOP AT task_result_casted->f_task_data-alerts_by_indicies INTO DATA(alerts).
+              LOOP AT alerts-alerts INTO DATA(alerts_detail).
+                LOOP AT alerts_detail-header-params INTO DATA(param).
+                  APPEND param TO lt_secret_tests_failed.
+                ENDLOOP.
+              ENDLOOP.
+            ENDLOOP.
+            IF fails = 0.
+              MESSAGE 'Great! All secret tests passed!!' TYPE 'I'.
+            ELSE.
+
+              LOOP AT lt_secret_tests_failed INTO param.
+                CASE sy-tabix.
+                  WHEN 1. DATA(textline1) = param.
+                  WHEN 2. DATA(textline2) = param.
+                  WHEN 3. DATA(textline3) = param.
+                  WHEN OTHERS.
+                    EXIT.
+                ENDCASE.
+              ENDLOOP.
+
+              CALL FUNCTION 'POPUP_TO_DISPLAY_TEXT_LO'
+                EXPORTING
+                  titel        = |There are { fails } secret tests failed!|
+                  textline1    = textline1
+                  textline2    = textline2
+                  textline3    = textline3
+                  start_column = 15
+                  start_row    = 6.
+
+            ENDIF.
+        ENDCASE.
+
+
 
       CATCH cx_root INTO DATA(exc) ##CATCH_ALL.
         MESSAGE exc->get_text( ) TYPE 'I' DISPLAY LIKE 'E'.
@@ -480,29 +525,25 @@ CLASS display IMPLEMENTATION.
     template = i_template.
     prepare_editors( ).
     CALL SCREEN 100.
-
   ENDMETHOD.
 
   METHOD prepare_editors.
-    DATA container1 TYPE REF TO cl_gui_custom_container.
-    DATA container2 TYPE REF TO cl_gui_custom_container.
 
+    g_declarations = VALUE #(
+      ( '*== AVE! Place needed data declarations here...' ) ) ##no_text.
+    g_implementation = VALUE #(
+      ( '*== Place your solution code here...' )
+      ( 'out = in.' ) )  ##no_text.
 
-    g_declarations = VALUE #(  ( '*== AVE! Place needed data declarations here...' ) )
-    ##no_text.
-    g_implementation = VALUE #( ( '*== Place your solution code here...' )
-                          ( 'out = in.' ) )
-      ##no_text.
+    main_splitter = NEW cl_gui_easy_splitter_container(
+                           parent = NEW cl_gui_custom_container( container_name = 'CUSTOM_CONTAINER' )
+                           orientation = cl_gui_easy_splitter_container=>orientation_horizontal ).
+    code_splitter = NEW cl_gui_easy_splitter_container(
+                           parent      = main_splitter->top_left_container
+                           orientation = cl_gui_easy_splitter_container=>orientation_vertical ).
 
-    CREATE OBJECT container1
-      EXPORTING
-        container_name = 'CUSTOM_CONTAINER1'.
-    g_editor1 = display=>create_abap_editor( container1 ).
-
-    CREATE OBJECT container2
-      EXPORTING
-        container_name = 'CUSTOM_CONTAINER2'.
-    g_editor2 = display=>create_abap_editor( container2 ).
+    g_editor1 = display=>create_abap_editor( code_splitter->top_left_container ).
+    g_editor2 = display=>create_abap_editor( code_splitter->bottom_right_container ).
 
   ENDMETHOD.
 
@@ -529,9 +570,10 @@ CLASS display IMPLEMENTATION.
 
 ENDCLASS.
 
+
 MODULE status_0100 OUTPUT.
   SET PF-STATUS 'STATUS_100'.
-  SET TITLEBAR  'TITLE_100'.
+  SET TITLEBAR 'TITLE'.
   display=>fill_abap_editor( editor = g_editor1
                              text   = g_declarations ).
   display=>fill_abap_editor( editor = g_editor2
@@ -566,7 +608,8 @@ MODULE user_command_0100.
                              IMPORTING text   = g_implementation ).
   CASE g_ok_code.
     WHEN 'EXECUTE'.
-      program=>execute( ).
+      program=>execute( unit_tests   = abap_true ).
+      program=>execute( secret_tests = abap_true ).
     WHEN 'CHECK'.
       program=>execute( check_only = abap_true ).
     WHEN 'CLEAR'.
