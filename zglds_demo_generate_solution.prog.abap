@@ -277,6 +277,16 @@ CLASS program IMPLEMENTATION.
 
         CASE 'X'.
           WHEN unit_tests.
+            "First clear chlidren container
+            data cnt type ref to cl_gui_container.
+            loop at display=>main_splitter->bottom_right_container->children into data(child).
+              if child is INSTANCE OF cl_gui_container.
+                cnt ?= child.
+                cnt->free( ).
+                clear child.
+              endif.
+            endloop.
+            "After having cleared the containers, we can call the SAUNIT-control again
             CALL FUNCTION '_SAUNIT_CREATE_CTRL_VIEWER_V3'
               EXPORTING
                 task_data = task_result_casted->f_task_data
@@ -304,14 +314,12 @@ CLASS program IMPLEMENTATION.
                 ENDCASE.
               ENDLOOP.
 
-              CALL FUNCTION 'POPUP_TO_DISPLAY_TEXT_LO'
+              CALL FUNCTION 'POPUP_TO_INFORM'
                 EXPORTING
                   titel        = |There are { fails } secret tests failed!|
-                  textline1    = textline1
-                  textline2    = textline2
-                  textline3    = textline3
-                  start_column = 15
-                  start_row    = 6.
+                  txt1    = textline1
+                  txt2    = textline2
+                  txt3    = textline3.
 
             ENDIF.
         ENDCASE.
