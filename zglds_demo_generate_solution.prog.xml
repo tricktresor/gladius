@@ -4,8 +4,6 @@
   <asx:values>
    <PROGDIR>
     <NAME>ZGLDS_DEMO_GENERATE_SOLUTION</NAME>
-    <STATE>A</STATE>
-    <VARCL>X</VARCL>
     <SUBC>1</SUBC>
     <RSTAT>T</RSTAT>
     <RLOAD>D</RLOAD>
@@ -408,6 +406,297 @@
      </TEXTPOOL>
     </item>
    </I18N_TPOOL>
+   <LONGTEXTS>
+    <item>
+     <DOKIL>
+      <ID>RE</ID>
+      <OBJECT>ZGLDS_DEMO_GENERATE_SOLUTION</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>E</TYP>
+      <VERSION>0008</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00025</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZGLDS_DEMO_GENERATE_SOLUTION</TDNAME>
+      <TDID>RE</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00008</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;PURPOSE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Demonstration einer generischen Programmerzeugung und zugehöriger</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Sicherheitsüberprüfungen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;INTEGRATION&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Siehe &lt;DS:ABEN.PROGRAM_GENERATION_ABEXA&gt;Programmgenerierung&lt;/&gt;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;PREREQUISITES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Das Programm kann nicht in Produktivsystemen und nur mit</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Entwicklungsberechtigung verwendet werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FEATURES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>In einem Deklarationsteil können Deklarationen und in einem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Implementierungsteil kann eine Implementierung eingegeben werden. Die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Eingaben können auf syntaktische Richtigkeit überprüft und der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>eingegebene Programmabschnitt kann ausgeführt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Für die Implementierung ist nur ein eingeschränkter Satz von</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ABAP-Anweisungen erlaubt und es dürfen keine Aufrufe anderer Einheiten</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>mit Ausnahme der Ausgabeklasse erfolgen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;SELECTION&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;STANDARD_VARIANTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;OUTPUT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Ausgaben können mit der Klasse &lt;DS:CL.CL_DEMO_OUTPUT&gt;CL_DEMO_OUTPUT&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>erzeugt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;ACTIVITIES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Wenn es Ihnen gelingt, die Sicherheitsprüfungen des Programms zu umgehen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ohne das Programm oder den Programmablauf im Debugger zu manipulieren,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>d.h.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Sie können das Programm in einem Produktivsystem verwenden,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Sie können trotz fehlender Entwicklungsberechtigung einen Quelltext</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>generieren und ausführen,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Sie können potenziell schadhaften Code implementieren,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>melden Sie das bitte umgehend an die Komponente BC-ABA-LA.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>RE</ID>
+      <OBJECT>ZGLDS_DEMO_GENERATE_SOLUTION</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>E</TYP>
+      <VERSION>0008</VERSION>
+      <TXTLINES>00021</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZGLDS_DEMO_GENERATE_SOLUTION</TDNAME>
+      <TDID>RE</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00008</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;PURPOSE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Demonstration of Generic Program Generation and Associated Security</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Checks</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;INTEGRATION&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>See &lt;DS:ABEN.PROGRAM_GENERATION_ABEXA&gt;Program Generation&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;PREREQUISITES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This program cannot be executed in production systems and can only be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>used by users with developer authorizations.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FEATURES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Declarations are entered in a declaration part and an implementation is</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>entered in an implementation part. The syntax of these entries can be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>tested and the specified program section can be executed.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Only a restricted group of ABAP statements are allowed in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>implementation and no other units can be called (except for the output</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>class).</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;SELECTION&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;STANDARD_VARIANTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>&amp;OUTPUT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Output can be created using the class &lt;DS:CL.CL_DEMO_OUTPUT&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>=</TDFORMAT>
+       <TDLINE>CL_DEMO_OUTPUT&lt;/&gt;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;ACTIVITIES&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>If you manage to bypass the program&apos;s security checks without</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>manipulating the program or process flow in the debugger, this means the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>following:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>You can use the program in a production system.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>You can generate and execute the source code despite not having</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>developer authorization.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>You can implement potentially dangerous code.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Notify this immediately by sending a message to BC-ABA-LA.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>
