@@ -27,8 +27,10 @@ public section.
   methods TEST_DUMMY
   for testing .
   PROTECTED SECTION.
-  PRIVATE SECTION.
-    DATA mo_class_to_test TYPE REF TO zif_glds_demo_test .
+private section.
+
+  data MO_CLASS_TO_TEST type ref to ZIF_GLDS_DEMO_TEST .
+  data MO_RND type ref to CL_ABAP_RANDOM_INT .
 ENDCLASS.
 
 
@@ -37,8 +39,14 @@ CLASS ZCL_GLDS_DEMO_TEST_UNITS IMPLEMENTATION.
 
 
   METHOD constructor.
+
     super->constructor( ).
     mo_class_to_test ?= mo_class_to_test_generic.
+    mo_rnd = cl_abap_random_int=>create(
+      seed = cl_abap_random=>seed( )
+      min  = 10
+      max  = 10000 ).
+
   ENDMETHOD.
 
 
@@ -102,7 +110,7 @@ CLASS ZCL_GLDS_DEMO_TEST_UNITS IMPLEMENTATION.
 
 
   METHOD test_random.
-    DATA(rnd) = cl_abap_random_int=>create( seed = 42 min = 10 max = 10000 )->get_next( ).
+    DATA(rnd) = mo_rnd->get_next( ).
     DATA(result) = rnd * ( rnd - 1 ).
     cl_abap_unit_assert=>assert_equals(
       exp = result

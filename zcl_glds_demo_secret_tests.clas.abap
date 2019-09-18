@@ -34,7 +34,7 @@ CLASS ZCL_GLDS_DEMO_SECRET_TESTS IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals(
       exp = 0
       act = mo_class_to_test->test_me( 1 )
-      msg = 'Secret test 1' ).
+      msg = 'Secret test 1 failed. try to think about it...' ).
   ENDMETHOD.
 
 
@@ -42,6 +42,6 @@ CLASS ZCL_GLDS_DEMO_SECRET_TESTS IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals(
       exp = 2
       act = mo_class_to_test->test_me( 2 )
-      msg = 'Secret test 2' ).
+      msg = 'Secret test 2 failed. Maybe you should think harder... ;)' ).
   ENDMETHOD.
 ENDCLASS.

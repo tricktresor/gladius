@@ -1,4 +1,4 @@
-REPORT zglds_demo_template.
+REPORT zglds_demo_test_template.
 
 CLASS lcl_solution DEFINITION.
 

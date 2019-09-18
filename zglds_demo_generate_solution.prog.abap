@@ -234,7 +234,7 @@ CLASS program IMPLEMENTATION.
         ENDLOOP.
       WHEN secret_tests.
         LOOP AT <source> ASSIGNING FIELD-SYMBOL(<line_st>).
-          REPLACE '*??:' WITH space INTO <line_st>.
+          REPLACE '*ST:' WITH space INTO <line_st>.
         ENDLOOP.
     ENDCASE.
 
